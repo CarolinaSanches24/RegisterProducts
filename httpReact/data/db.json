@@ -1,0 +1,29 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Camisa",
+      "price": 59.9
+    },
+    {
+      "id": "2",
+      "name": "Calça vermelha",
+      "price": 90
+    },
+    {
+      "id": "3",
+      "name": "Boné aba reta",
+      "price": 29.9
+    },
+    {
+      "id": "85e4",
+      "name": "Caneca One Piece",
+      "price": "150"
+    },
+    {
+      "id": "3c5b",
+      "name": "Toalha de mesa Attack on Titan ",
+      "price": "300"
+    }
+  ]
+}
