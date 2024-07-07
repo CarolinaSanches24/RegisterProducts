@@ -35,14 +35,27 @@ function App() {
       price
     };
 
-     await fetch(url, {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-      },
-      body:JSON.stringify(product)
-    });
-    
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product)
+      });
+
+      if (!res.ok) {
+        throw new Error('Erro ao adicionar o produto');
+      }
+
+      const addedProduct = await res.json();
+
+      setProducts((prevProducts) => [...prevProducts, addedProduct]);
+      setName("");
+      setPrice("");
+    } catch (error) {
+      console.error("Erro ao adicionar o produto:", error);
+    }
   };
 
   return (
