@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState} from 'react';
 import { VStack, HStack, Input, Button, Text } from '@chakra-ui/react';
 import './App.css'; 
 import { Product } from './entity/product';
+import { useFetch } from './hooks/useFetch'; 
 
 const url = "http://localhost:3000/products";
 
@@ -10,22 +11,22 @@ function App() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error('Erro ao carregar os dados');
-        }
-        const data = await res.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Erro ao buscar os dados:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await fetch(url);
+  //       if (!res.ok) {
+  //         throw new Error('Erro ao carregar os dados');
+  //       }
+  //       const data = await res.json();
+  //       setProducts(data);
+  //     } catch (error) {
+  //       console.error("Erro ao buscar os dados:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
