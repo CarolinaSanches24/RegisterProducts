@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { VStack, HStack, Input, Button, Text } from '@chakra-ui/react';
 import './App.css'; 
 import { Product } from './entity/product';
@@ -7,64 +7,31 @@ import { useFetch } from './hooks/useFetch';
 const url = "http://localhost:3000/products";
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await fetch(url);
-  //       if (!res.ok) {
-  //         throw new Error('Erro ao carregar os dados');
-  //       }
-  //       const data = await res.json();
-  //       setProducts(data);
-  //     } catch (error) {
-  //       console.error("Erro ao buscar os dados:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+  const { data: items = [], httpConfig } = useFetch(url);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const product = {
+    const newProduct: Product = {
+      id: items && items.length +1,
       name,
-      price
+      price: parseFloat(price)
     };
 
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product)
-      });
+    httpConfig(newProduct, "POST");
 
-      if (!res.ok) {
-        throw new Error('Erro ao adicionar o produto');
-      }
-
-      const addedProduct = await res.json();
-
-      setProducts((prevProducts) => [...prevProducts, addedProduct]);
-      setName("");
-      setPrice("");
-    } catch (error) {
-      console.error("Erro ao adicionar o produto:", error);
-    }
+    setName("");
+    setPrice("");
   };
 
   return (
     <VStack spacing={4} padding={8} align="stretch" className='App'>
       <Text fontSize="2xl">Lista de Produtos</Text>
       <VStack align="stretch">
-        {products.length > 0 ? (
-          products.map((product) => (
+        {items && items.length > 0 ? (
+          items.map((product: Product) => (
             <Text key={product.id}>{product.name} - R$: {product.price}</Text>
           ))
         ) : (

@@ -1,34 +1,29 @@
 {
   "products": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Camisa",
       "price": 59.9
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Calça vermelha",
       "price": 90
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Boné aba reta",
       "price": 29.9
     },
     {
-      "id": "85e4",
-      "name": "Caneca One Piece",
-      "price": "150"
+      "id": 4,
+      "name": "Caneca one piece",
+      "price": 100
     },
     {
-      "id": "3c5b",
-      "name": "Toalha de mesa Attack on Titan ",
-      "price": "300"
-    },
-    {
-      "id": "88eb",
-      "name": "Camisa Monkey D luffy ",
-      "price": "50"
+      "id": 5,
+      "name": "Blusa Monkey D Luffy",
+      "price": 50
     }
   ]
 }
