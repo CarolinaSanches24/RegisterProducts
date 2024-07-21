@@ -13,7 +13,7 @@ type FetchConfig = {
 } | null;
 
 export const useFetch = (url:string) => {
-    const [data, setData] = useState<null | unknown>(null);
+    const [data, setData] = useState<null>(null);
     const [config, setConfig] = useState<FetchConfig>(null);
     const [method, setMethod] = useState<Method | null>(null);
     const [callFetch, setCallFetch] = useState(false);

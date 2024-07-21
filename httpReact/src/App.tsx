@@ -11,11 +11,12 @@ function App() {
   const [price, setPrice] = useState("");
   const { data: items = [], httpConfig } = useFetch(url);
 
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newProduct: Product = {
-      id: items && items.length +1,
+    const newProduct= {
+      id:items ? items.length + 1 : 1,
       name,
       price: parseFloat(price)
     };
