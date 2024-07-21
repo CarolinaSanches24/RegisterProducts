@@ -7,8 +7,23 @@
     },
     {
       "id": 2,
-      "name": "Caneca One Piece",
-      "price": 145
+      "name": "Sapato ",
+      "price": 150
+    },
+    {
+      "id": 3,
+      "name": "Camisa ",
+      "price": 200
+    },
+    {
+      "id": 4,
+      "name": "Short Saia",
+      "price": 10.99
+    },
+    {
+      "id": 5,
+      "name": "Camisa Monkey D Luffy",
+      "price": 150
     }
   ]
 }
