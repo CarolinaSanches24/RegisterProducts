@@ -6,24 +6,49 @@
       "price": 59.9
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Sapato ",
       "price": 150
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Camisa ",
       "price": 200
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Short Saia",
       "price": 10.99
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Camisa Monkey D Luffy",
       "price": 150
+    },
+    {
+      "id": 6,
+      "name": "Caneca one piece",
+      "price": 25
+    },
+    {
+      "id": 7,
+      "name": "Microfone ",
+      "price": 5
+    },
+    {
+      "id": 8,
+      "name": "Microfone 2",
+      "price": 10
+    },
+    {
+      "id": 8,
+      "name": "Microfone 2",
+      "price": 10
+    },
+    {
+      "id": 8,
+      "name": "Microfone 2",
+      "price": 10
     }
   ]
 }

@@ -9,7 +9,7 @@ const url = "http://localhost:3000/products";
 function App() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const { data: items = [], httpConfig, loading } = useFetch(url);
+  const { data: items = [], httpConfig, loading ,error} = useFetch(url);
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -50,6 +50,7 @@ function App() {
           />
         </HStack>
       )}
+      {error && <p>{error}</p>}
       {!loading && (
         <VStack align="stretch">
           {products.length > 0 ? (
@@ -66,7 +67,10 @@ function App() {
           <HStack>
             <Input type="text" value={name} name="name" onChange={(e) => setName(e.target.value)} placeholder="Nome do Produto" />
             <Input type="number" value={price} name="price" onChange={(e) => setPrice(e.target.value)} placeholder="Preço do Produto" />
-            <Button type="submit" colorScheme="blue">Criar</Button>
+           {/*7 - state de loading no post*/}
+           {loading && <Button type="submit" disabled value="Aguarde" colorScheme="blue">Criar</Button>}
+           {!loading && <Button type="submit" colorScheme="blue">Criar</Button>}
+            
           </HStack>
         </form>
       </VStack>

@@ -20,6 +20,7 @@ export const useFetch = (url: string) => {
     const [callFetch, setCallFetch] = useState(false);
 
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const httpConfig = async (data: ConfigData, method: Method) => {
         if (method === "POST") {
@@ -48,6 +49,7 @@ export const useFetch = (url: string) => {
                     setLoading(false);
                 }, 2000);
             } catch (error) {
+                setError("Houve algum erro ao carregar dados");
                 console.error("Error fetching data:", error);
                 setLoading(false);
             }
@@ -76,5 +78,5 @@ export const useFetch = (url: string) => {
         }
     }, [config, method, url]);
 
-    return { data, httpConfig, loading };
+    return { data, httpConfig, loading, error };
 };
