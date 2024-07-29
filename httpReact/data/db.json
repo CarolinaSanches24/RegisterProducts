@@ -26,28 +26,33 @@
       "price": 150
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Caneca one piece",
       "price": 25
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Microfone ",
       "price": 5
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Microfone 2",
       "price": 10
     },
     {
-      "id": 8,
-      "name": "Microfone 2",
-      "price": 10
+      "id": "9",
+      "name": "",
+      "price": null
     },
     {
-      "id": 8,
-      "name": "Microfone 2",
+      "id": "10",
+      "name": "Caneca Zoro",
+      "price": 140
+    },
+    {
+      "id": 11,
+      "name": "teste",
       "price": 10
     }
   ]

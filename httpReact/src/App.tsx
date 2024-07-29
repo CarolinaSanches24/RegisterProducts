@@ -3,6 +3,7 @@ import { VStack, HStack, Input, Button, Text, Spinner } from '@chakra-ui/react';
 import './App.css'; 
 import { Product } from './entity/product';
 import { useFetch } from './hooks/useFetch'; 
+import { getImageUrl } from './utils';
 
 const url = "http://localhost:3000/products";
 
@@ -70,7 +71,9 @@ function App() {
            {/*7 - state de loading no post*/}
            {loading && <Button type="submit" disabled value="Aguarde" colorScheme="blue">Criar</Button>}
            {!loading && <Button type="submit" colorScheme="blue">Criar</Button>}
-            
+           <Button type="submit" colorScheme="red" name="delete">
+              <img src={getImageUrl("icon/delete.svg")} alt="Remover produto" style={{ width: '40px', height: '40px' }} />
+          </Button>
           </HStack>
         </form>
       </VStack>

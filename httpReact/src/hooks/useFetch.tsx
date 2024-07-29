@@ -10,7 +10,7 @@ type FetchConfig = {
     headers: {
         "Content-Type": string;
     };
-    body: string;
+    body?: string;
 } | null;
 
 export const useFetch = (url: string) => {
@@ -21,6 +21,8 @@ export const useFetch = (url: string) => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    const [itemId, setItemId] = useState(null);
 
     const httpConfig = async (data: ConfigData, method: Method) => {
         if (method === "POST") {
@@ -34,6 +36,16 @@ export const useFetch = (url: string) => {
 
             setMethod(method);
             setCallFetch(true);
+        }else if(method==="DELETE"){
+            setConfig({
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                
+            });
+            setMethod(method);
+            setItemId(data);
         }
     };
 
@@ -70,7 +82,9 @@ export const useFetch = (url: string) => {
                 } finally {
                     setCallFetch(false);
                 }
-            }
+            }else if(method==="DELETE"){
+                const deleteUrl = `${url}/${itemId}`;
+                const res = await fetch(deleteUrl, config);
         };
 
         if (method === "POST" && config) {
