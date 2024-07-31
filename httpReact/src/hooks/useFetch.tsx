@@ -21,10 +21,9 @@ export const useFetch = (url: string) => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [itemId, setItemId] = useState<number | null>(null);
 
-    const [itemId, setItemId] = useState(null);
-
-    const httpConfig = async (data: ConfigData, method: Method) => {
+    const httpConfig = async (data: ConfigData | number, method: Method) => {
         if (method === "POST") {
             setConfig({
                 method: "POST",
@@ -33,20 +32,17 @@ export const useFetch = (url: string) => {
                 },
                 body: JSON.stringify(data),
             });
-
-            setMethod(method);
-            setCallFetch(true);
-        }else if(method==="DELETE"){
+        } else if (method === "DELETE") {
             setConfig({
-                method: "POST",
+                method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                
             });
-            setMethod(method);
-            setItemId(data);
+            setItemId(data as unknown as number);
         }
+        setMethod(method);
+        setCallFetch(true);
     };
 
     useEffect(() => {
@@ -72,25 +68,30 @@ export const useFetch = (url: string) => {
 
     useEffect(() => {
         const httpRequest = async () => {
-            if (method === "POST" && config) {
-                try {
-                    const res = await fetch(url, config);
-                    const json = await res.json();
-                    return json;
-                } catch (error) {
-                    console.error("Error making POST request:", error);
-                } finally {
-                    setCallFetch(false);
+            if (!method || !config) return;
+
+            try {
+                let res;
+                if (method === "DELETE" && itemId !== null) {
+                    const deleteUrl = `${url}/${itemId}`;
+                    res = await fetch(deleteUrl, config);
+                } else {
+                    res = await fetch(url, config);
                 }
-            }else if(method==="DELETE"){
-                const deleteUrl = `${url}/${itemId}`;
-                const res = await fetch(deleteUrl, config);
+
+                const json = await res.json();
+                setData(json);
+            } catch (error) {
+                console.error(`Error making ${method} request:`, error);
+            } finally {
+                setCallFetch(false);
+            }
         };
 
-        if (method === "POST" && config) {
+        if (callFetch) {
             httpRequest();
         }
-    }, [config, method, url]);
+    }, [config, method, url, callFetch, itemId]);
 
     return { data, httpConfig, loading, error };
 };
